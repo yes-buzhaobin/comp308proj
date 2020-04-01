@@ -13,16 +13,16 @@ app.use(
     })
 )
 
-const mongooseURI = 'mongodb://localhost:27017/lab3';
+const mongooseURI = 'mongodb://localhost:27017/proj';
 
 mongoose
     .connect(mongooseURI, {useNewUrlParser:true})
     .then(() => console.log("MongoDB connected!"))
     .catch(err => console.log(err));
 
-    var Students = require('./routes/StudentsR');
+    var Users = require('./routes/UsersR');
 
-    app.use('/students', Students)
+    app.use('/users', Users)
 
     var Courses = require('./routes/CoursesR');
 

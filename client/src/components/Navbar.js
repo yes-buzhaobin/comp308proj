@@ -19,15 +19,14 @@ class Navbar extends Component{
   }
   
   componentDidMount(){
-    this.setState({ userName : localStorage.studentName});
+    this.setState({ userName : localStorage.userName});
   }
     logOut(e) {
         e.preventDefault();
         //localStorage.setItem('studentName', "");
-        localStorage.removeItem('studenttoken');
-        localStorage.removeItem('studentName');
+        localStorage.removeItem('usertoken');
+        localStorage.removeItem('userName');
         localStorage.removeItem('email');
-        localStorage.removeItem('studentNumber');
 
         this.props.history.push('/');
     }
@@ -80,7 +79,7 @@ class Navbar extends Component{
                 </li>
             </ul>
         );
-        const studentLink = (
+        const patientLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <Link to="/profile" className="my-nav-link">
@@ -111,11 +110,11 @@ class Navbar extends Component{
                             </Link>
                         </li>
                     </ul>
-                    {localStorage.studenttoken && localStorage.email !== 'admin@yahoo.ca' ? studentLink : null}
+                    {localStorage.usertoken && localStorage.email !== 'admin@yahoo.ca' ? patientLink : null}
                     { localStorage.email === 'admin@yahoo.ca' ? adminLink : null}
                 </div>
                 <div className="d-flex flex-reverse bd-highlight mb-3 ustify-content-around" id="navbar2">
-                    {localStorage.studenttoken ? workingLink : loginRegLink}
+                    {localStorage.usertoken ? workingLink : loginRegLink}
                 </div>
             </nav>
             

@@ -1,5 +1,5 @@
 import React from 'react';
-import {register} from './StudentFunctions';
+import {register} from './UserFunctions';
 import './Register.css';
 
 class Register extends React.Component {
@@ -7,14 +7,12 @@ class Register extends React.Component {
         super();
         this.state = {
             password:'',
-            student_numer:'',
             first_name:'',
             last_name:'',
             address:'',
             city:'',
             phone_number:'',
-            email:'',
-            program:''
+            email:''
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -26,18 +24,16 @@ class Register extends React.Component {
     onSubmit(e){
         e.preventDefault();
 
-        const newStudent = {
-            student_number:this.state.student_number,
+        const newUser = {
             password:this.state.password,
             first_name:this.state.first_name,
             last_name:this.state.last_name,
             address:this.state.address,
             city:this.state.city,
             phone_number:this.state.phone_number,
-            email:this.state.email,
-            program:this.state.program
+            email:this.state.email
         };
-        register(newStudent).then(res => {
+        register(newUser).then(res => {
                 if(res.error){
                     console.log(res);
                 }
@@ -54,17 +50,17 @@ class Register extends React.Component {
                     <div className="FormFix">
                         <form className="form-horizontal" noValidate onSubmit={this.onSubmit}>
                             <h3 className="h3 mb-3 font-weight-normal">Please Sign Up</h3>
+                            
                             <div className="row">
                                 <div className="col">
-                                    <label htmlFor="student_number" className="labelRight">Student Number:</label>
+                                    <label htmlFor="email" className="labelRight">Email Address:</label>
                                 </div>
-                                
                                 <div className="col-8">
-                                    <input type="text"
+                                    <input type="email"
                                     className="form-control"
-                                    name="student_number"
-                                    placeholder="Enter student number"
-                                    value={this.state.student_number}
+                                    name="email"
+                                    placeholder="Enter Email"
+                                    value={this.state.email}
                                     onChange={this.onChange}/>
                                 </div>
                             </div>
@@ -146,33 +142,7 @@ class Register extends React.Component {
                                     onChange={this.onChange}/>
                                 </div>
                             </div>
-
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="email" className="labelRight">Email Address:</label>
-                                </div>
-                                <div className="col-8">
-                                    <input type="email"
-                                    className="form-control"
-                                    name="email"
-                                    placeholder="Enter Email"
-                                    value={this.state.email}
-                                    onChange={this.onChange}/>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="program" className="labelRight">Program:</label>
-                                </div>
-                                <div className="col-8">
-                                    <input type="text"
-                                    className="form-control"
-                                    name="program"
-                                    placeholder="Enter Program"
-                                    value={this.state.program}
-                                    onChange={this.onChange}/>
-                                </div>
-                            </div>
+                            
                             <button type="submit" className="btn btn-lg btn-primary btn-block">
                                 Register
                             </button>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import axios from 'axios';
-import {login} from './StudentFunctions';
+import {login} from './UserFunctions';
 import './Register.css';
 
 class Login extends Component {
@@ -19,12 +19,12 @@ class Login extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        const student = {
+        const user = {
             email:this.state.email,
             password:this.state.password
         };
         
-        login(student).then(res => {
+        login(user).then(res => {
                 console.log(res);
                 window.location.reload();
                 this.props.history.push(`/`);

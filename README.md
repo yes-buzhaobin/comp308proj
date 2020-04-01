@@ -1,1 +1,1 @@
-This project was reformed from then assignment03.
+This project was reformed from the assignment03.

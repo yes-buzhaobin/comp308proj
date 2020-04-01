@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const StudentSchema = new Schema({
-    student_number:{
-        type:String,
-        unique:true
-    },
+const UserSchema = new Schema({
     password:{
         type:String,
         required:true
@@ -30,9 +26,10 @@ const StudentSchema = new Schema({
         unique:true,
         required:true
     },
-    program:{
-        type:String
+    role:{
+        type:String,
+        default:'10' //patient = 10; nurse = 20;
     }
 })
 
-module.exports = Student = mongoose.model('students', StudentSchema)
+module.exports = User = mongoose.model('users', UserSchema)
