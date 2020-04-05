@@ -18,6 +18,10 @@ import SelectNewCourse from './components/studentCourses/SelectNewCourse';
 import AddSelectedCourse from './components/studentCourses/AddSelectedCourse';
 import ShowClass from './components/studentCourses/ShowClass';
 
+import DisplayUsers from './components/users/DisplayUsers';
+import EditUser from './components/users/EditUser';
+import DeleteUser from './components/users/DeleteUser';
+
 class App extends Component {
   render(){
     return (
@@ -29,10 +33,15 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
+            
             <Route exact path="/displayCourses" component={DisplayCourses} />
             <Route exact path="/createCourse" component={CreateCourse} />
             <Route exact path="/editCourse/:id" component={EditCourse} />
             <Route exact path="/deleteCourse/:id" component={DeleteCourse} />
+
+            <Route exact path="/displayUsers" component={DisplayUsers} />
+            <Route exact path="/editUser/:id" component={EditUser} />
+            <Route exact path="/deleteUser/:id" component={DeleteUser} />
             
             <Route exact path="/addSelectedCourse/:id" component={AddSelectedCourse} />  
             <Route exact path="/dropCourse/:id" component={DropCourse} />     

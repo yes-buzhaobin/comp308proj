@@ -24,9 +24,9 @@ mongoose
 
     app.use('/users', Users)
 
-    var Courses = require('./routes/CoursesR');
+    var Reports = require('./routes/ReportR');
 
-    app.use('/courses', Courses);
+    app.use('/reports', Reports);
 
     var ChosenCourses = require('./routes/ChosenCoursesR');
 

@@ -4,26 +4,26 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const Course = require('../models/Course');
+const Course = require('../models/Report');
 courses.use(cors());
 
 process.env.SECRET_KEY = 'password';
 
-courses.post('/createCourse', (req, res) => {
-    console.log("try to save a course....");
+courses.post('/createReport', (req, res) => {
+    console.log("try to save a report....");
     console.log(req.body);
-    const courseData = {
+    const reportData = {
         course_code: req.body.course_code,
         course_name:req.body.course_name,
         section:req.body.section,
         semester:req.body.semester
     };
-    Course.create(courseData)
-    .then(student => {
-        res.json({ status: 'A course added!'});
+    Course.create( reportData)
+    .then(report => {
+        res.json({ status: 'A report added!'});
     })
     .catch(err => {
-        res.send('Adding course error: ' + err);
+        res.send('Adding report error: ' + err);
     })
 })
 

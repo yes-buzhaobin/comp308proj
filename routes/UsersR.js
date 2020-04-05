@@ -12,6 +12,13 @@ process.env.SECRET_KEY = 'password';
 users.post('/register', (req, res) => {
     console.log("try to save....");
     console.log(req.body);
+    var role;
+    if(req.body.email==='admin@yahoo.ca'){
+        role = 90;
+    }
+    else{
+        role = 10;
+    }
     const userData = {
         password:req.body.password,
         first_name:req.body.first_name,
@@ -19,7 +26,8 @@ users.post('/register', (req, res) => {
         address:req.body.address,
         city:req.body.city,
         phone_number:req.body.phone_number,
-        email:req.body.email
+        email:req.body.email,
+        role:role
     };
     User.findOne({
         email:req.body.email
@@ -77,7 +85,7 @@ users.post('/login', (req, res) => {
                     user:user
                 });
             } else {
-                res.json({err: "User does not exist first."});
+                res.json({err: "Invalid email/password!!!"});
             }
         } else {
             res.json({err: "User does not exist second"})
@@ -88,9 +96,67 @@ users.post('/login', (req, res) => {
     })
 })
 
+users.get('/users', (req, res) => {
+    //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
+    console.log("got users...")
+    User.find({
+        email:{$ne:'admin@yahoo.ca'}
+    })
+    .then(users => {
+        if(users){
+            res.json(users);
+        } else {
+            res.send(" User does not exist.");
+        }
+    })
+    .catch(err => {
+        res.send('error: ' + err);
+    })
+});
+
+users.get('/user/:id', (req, res) => {
+    console.log("get user by id.....");
+    console.log("get user by id....." + req.params.id);
+    let id = req.params.id;
+    User.findById(id, function(err, user){
+        res.json(user);
+    });
+})
+
+users.post('/update/:id', (req, res) => {
+    console.log("req.body= "+ req.body);
+    console.log(req.body.role);
+    User.findById(req.params.id, function(err, user) {
+        if(!user){
+            res.status(404).send('Data is not found');
+        } else {
+            console.log(user.role);
+            user.role = req.body.role;
+            console.log(user.role);
+
+            user.save().then(user => {
+                res.json('A course updated.');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible.");
+            })
+        }
+
+    });
+})
+
+users.delete("/:id", (req, res, next) => {
+    console.log("Delete ...: " + req.params.id);
+    
+    User.deleteOne({_id: req.params.id}).then(result => {
+        console.log(result);
+        res.status(200).json({message: "User deleted!"});
+    });
+})
+
 users.get('/profile', (req, res) => {
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
-
+    console.log("got profile...")
     User.findOne({
         _id: decoded._id
     })

@@ -49,8 +49,10 @@ class Navbar extends Component{
         //this.setState({ userName : localStorage.studentName});
         const workingLink = (
             <ul className="navbar-nav mr-auto">
-                <li className="nav-name">
-                    {this.state.userName}
+                <li className="nav-item">
+                    <Link to="/profile" className="my-nav-link">
+                        {this.state.userName}
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <a href="/login" onClick={this.logOut.bind(this)} className="my-nav-link">
@@ -63,38 +65,23 @@ class Navbar extends Component{
         const adminLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <Link to="/profile" className="my-nav-link">
-                        Profile
+                    <Link to="/displayUsers" className="my-nav-link">
+                        Users
                     </Link>
-                </li>
-                
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="/displayCourses" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Setup
-                    </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a className="dropdown-item" href="/createCourse">Add Course</a>
-                        <a className="dropdown-item" href="/displayCourses">Display Courses</a>
-                    </div>
                 </li>
             </ul>
         );
         const patientLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <Link to="/profile" className="my-nav-link">
-                        Profile
-                    </Link>
-                </li>
-                <li className="nav-item">
                     <Link to="/selectNewCourse" className="my-nav-link">
-                        ChooseCourses
+                        CreateReport
                     </Link>
                 </li>
                 
                 <li className="nav-item">
                     <Link to="/myCourseList" className="my-nav-link">
-                        MyCourses
+                        MyReports
                     </Link>
                 </li>
             </ul>

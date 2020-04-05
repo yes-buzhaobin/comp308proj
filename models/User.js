@@ -27,7 +27,7 @@ const UserSchema = new Schema({
         required:true
     },
     role:{
-        type:String,
+        type:Number,
         default:'10' //patient = 10; nurse = 20;
     }
 })
