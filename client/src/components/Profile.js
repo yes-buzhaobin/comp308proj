@@ -12,6 +12,7 @@ class Profile extends Component {
             city:'',
             phone_number:'',
             email:'',
+            nurse:'',
             role:''
         }
     }
@@ -27,6 +28,7 @@ class Profile extends Component {
             city:decoded.city,
             phone_number:decoded.phone_number,
             email:decoded.email,
+            nurse:decoded.nurse,
             role:decoded.role
         })
     }
@@ -71,6 +73,11 @@ class Profile extends Component {
                                         <label>Email:</label>
                                     </div>
                                 </td>
+                                <td>
+                                    <div>
+                                        <label>Nurse:</label>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>{this.state.first_name}</td>
@@ -79,6 +86,7 @@ class Profile extends Component {
                                 <td>{this.state.city}</td>
                                 <td>{this.state.phone_number}</td>
                                 <td>{this.state.email}</td>
+                                <td>{this.state.nurse}</td>
                             </tr>
                         </tbody>
                     </table>

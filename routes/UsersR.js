@@ -27,6 +27,7 @@ users.post('/register', (req, res) => {
         city:req.body.city,
         phone_number:req.body.phone_number,
         email:req.body.email,
+        nurse:'',
         role:role
     };
     User.findOne({
@@ -73,6 +74,7 @@ users.post('/login', (req, res) => {
                     city:user.city,
                     phone_number:user.phone_number,
                     email:user.email,
+                    nurse:user.nurse,
                     role:user.role
                 };
                 fetchUser = user;

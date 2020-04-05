@@ -74,13 +74,13 @@ class Navbar extends Component{
         const patientLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <Link to="/selectNewCourse" className="my-nav-link">
+                    <Link to="/createReport" className="my-nav-link">
                         CreateReport
                     </Link>
                 </li>
                 
                 <li className="nav-item">
-                    <Link to="/myCourseList" className="my-nav-link">
+                    <Link to="/myReport" className="my-nav-link">
                         MyReports
                     </Link>
                 </li>
