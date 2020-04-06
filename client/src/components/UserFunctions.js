@@ -32,6 +32,7 @@ export const login =  user => {
         let name = res.data.user.first_name;
         localStorage.setItem('usertoken', res.data.token);
         localStorage.setItem('userName', name);
+        localStorage.setItem('role', res.data.user.role);
         localStorage.setItem('email', res.data.user.email);
         console.log("Res " + res.data.user.email);
         console.log("Res data " + res);

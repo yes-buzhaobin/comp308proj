@@ -116,6 +116,43 @@ users.get('/users', (req, res) => {
     })
 });
 
+users.get('/noNursePatients', (req, res) => {
+    //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
+    console.log("got users...")
+    User.find({
+        nurse:'',
+        role:'10'
+    })
+    .then(users => {
+        if(users){
+            res.json(users);
+        } else {
+            res.send(" User does not exist.");
+        }
+    })
+    .catch(err => {
+        res.send('error: ' + err);
+    })
+});
+users.get('/myPatients/:email', (req, res) => {
+    //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
+    console.log("got my patients by email...");
+    console.log(req.params.email);
+    User.find({
+        nurse:req.params.email,
+        role:'10'
+    })
+    .then(users => {
+        if(users){
+            res.json(users);
+        } else {
+            res.send(" User does not exist.");
+        }
+    })
+    .catch(err => {
+        res.send('error: ' + err);
+    })
+});
 users.get('/user/:id', (req, res) => {
     console.log("get user by id.....");
     console.log("get user by id....." + req.params.id);
@@ -138,6 +175,48 @@ users.post('/update/:id', (req, res) => {
 
             user.save().then(user => {
                 res.json('A course updated.');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible.");
+            })
+        }
+
+    });
+})
+users.post('/updateNurse/:id', (req, res) => {
+    console.log("req.body= "+ req.body);
+    console.log(req.body.nurse);
+    User.findById(req.params.id, function(err, user) {
+        if(!user){
+            res.status(404).send('Data is not found');
+        } else {
+            console.log(user.nurse);
+            user.nurse = req.body.nurse;
+            console.log(user.nurse);
+
+            user.save().then(user => {
+                res.json('A nurse of the user updated.');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible.");
+            })
+        }
+
+    });
+})
+users.post('/dropNurse/:id', (req, res) => {
+    console.log("req.body= "+ req.body);
+    console.log(req.body.nurse);
+    User.findById(req.params.id, function(err, user) {
+        if(!user){
+            res.status(404).send('Data is not found');
+        } else {
+            console.log(user.nurse);
+            user.nurse = '';
+            console.log(user.nurse);
+
+            user.save().then(user => {
+                res.json('A nurse of the user updated.');
             })
             .catch(err => {
                 res.status(400).send("Update not possible.");

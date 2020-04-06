@@ -34,12 +34,12 @@ class Navbar extends Component{
         const loginRegLink = (
             <ul className="navbar-nav mr-auto" >
                 <li className="nav-item" >
-                    <Link to="/login" className="my-nav-link">
+                    <Link to="/login" className="home-nav-link">
                         Login
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/register" className="my-nav-link">
+                    <Link to="/register" className="home-nav-link">
                         Register
                     </Link>
                 </li>
@@ -50,12 +50,12 @@ class Navbar extends Component{
         const workingLink = (
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                    <Link to="/profile" className="my-nav-link">
+                    <Link to="/profile" className="home-nav-link">
                         {this.state.userName}
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <a href="/login" onClick={this.logOut.bind(this)} className="my-nav-link">
+                    <a href="/login" onClick={this.logOut.bind(this)} className="home-nav-link">
                         Logout
                     </a>
                 </li>
@@ -71,6 +71,25 @@ class Navbar extends Component{
                 </li>
             </ul>
         );
+        const nurseLink = (
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <Link to="/createReport" className="my-nav-link">
+                        CreatePost
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/noNursePatients" className="my-nav-link">
+                        NoNursePatient
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/myPatients" className="my-nav-link">
+                        MyPatients
+                    </Link>
+                </li>
+            </ul>
+        );
         const patientLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
@@ -80,7 +99,7 @@ class Navbar extends Component{
                 </li>
                 
                 <li className="nav-item">
-                    <Link to="/myReport" className="my-nav-link">
+                    <Link to="/myReports" className="my-nav-link">
                         MyReports
                     </Link>
                 </li>
@@ -92,12 +111,13 @@ class Navbar extends Component{
                 <div className="d-flex flex-row bd-highlight mb-3 ustify-content-around" id="navbar1">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link to="/" className="my-nav-link">
+                            <Link to="/" className="home-nav-link">
                             Home
                             </Link>
                         </li>
                     </ul>
-                    {localStorage.usertoken && localStorage.email !== 'admin@yahoo.ca' ? patientLink : null}
+                    {localStorage.usertoken && localStorage.role === '20' ? nurseLink : null}
+                    {localStorage.usertoken && localStorage.role === '10' ? patientLink : null}
                     { localStorage.email === 'admin@yahoo.ca' ? adminLink : null}
                 </div>
                 <div className="d-flex flex-reverse bd-highlight mb-3 ustify-content-around" id="navbar2">

@@ -18,9 +18,17 @@ import SelectNewCourse from './components/studentCourses/SelectNewCourse';
 import AddSelectedCourse from './components/studentCourses/AddSelectedCourse';
 import ShowClass from './components/studentCourses/ShowClass';
 
-import DisplayUsers from './components/users/DisplayUsers';
+import DisplayUsers from './components/users/DisplayUsers';//admin components
 import EditUser from './components/users/EditUser';
 import DeleteUser from './components/users/DeleteUser';
+
+import AcceptPatient from './components/nurse/patients/AcceptPatient';//nurse components
+import DropPatient from './components/nurse/patients/DropPatient';//nurse components
+import MyPatients from './components/nurse/patients/MyPatients';//nurse components
+import NoNursePatients from './components/nurse/patients/NoNursePatients';//nurse components
+
+import CreateReport from './components/reports/CreateReport';
+
 
 class App extends Component {
   render(){
@@ -42,6 +50,17 @@ class App extends Component {
             <Route exact path="/displayUsers" component={DisplayUsers} />
             <Route exact path="/editUser/:id" component={EditUser} />
             <Route exact path="/deleteUser/:id" component={DeleteUser} />
+
+            <Route exact path="/noNursePatients" component={NoNursePatients} />
+            <Route exact path="/myPatients" component={MyPatients} />
+            <Route exact path="/acceptPatient/:id" component={AcceptPatient} />
+            <Route exact path="/dropPatient/:id" component={DropPatient} />
+
+
+
+            <Route exact path="/createReport/" component={CreateReport} />
+
+
             
             <Route exact path="/addSelectedCourse/:id" component={AddSelectedCourse} />  
             <Route exact path="/dropCourse/:id" component={DropCourse} />     

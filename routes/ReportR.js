@@ -1,24 +1,30 @@
 const express = require('express');
-const courses = express.Router();
+const reports = express.Router();
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const Course = require('../models/Report');
-courses.use(cors());
+const Report = require('../models/Report');
+reports.use(cors());
 
 process.env.SECRET_KEY = 'password';
 
-courses.post('/createReport', (req, res) => {
+reports.post('/createReport', (req, res) => {
     console.log("try to save a report....");
     console.log(req.body);
     const reportData = {
-        course_code: req.body.course_code,
-        course_name:req.body.course_name,
-        section:req.body.section,
-        semester:req.body.semester
+        nurse_email: req.body.nurse_email,
+        body_temperature:req.body.body_temperature,
+        heart_rate:req.body.heart_rate,
+        respiratory_rate:req.body.respiratory_rate,
+        low_blood_pressure:req.body.low_blood_pressure,
+        high_blood_preasure:req.body.high_blood_preasure,
+        weight:req.body.weight,
+
+        report_time:req.body.report_time,
+        status:req.body.status
     };
-    Course.create( reportData)
+    Report.create(reportData)
     .then(report => {
         res.json({ status: 'A report added!'});
     })
@@ -27,7 +33,7 @@ courses.post('/createReport', (req, res) => {
     })
 })
 
-courses.post('/update/:id', (req, res) => {
+reports.post('/update/:id', (req, res) => {
     console.log("try to update a course....");
     console.log(req.body);
     Course.findById(req.params.id, function(err, course) {
@@ -50,7 +56,7 @@ courses.post('/update/:id', (req, res) => {
     });
 })
 
-courses.get('/courses', (req, res) => {
+reports.get('/reports', (req, res) => {
     //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
     console.log("getting courses");
     Course.find()
@@ -60,28 +66,28 @@ courses.get('/courses', (req, res) => {
             })
         });
 })
-courses.get('/:id', (req, res) => {
-    console.log("get course by id.....");
+reports.get('/:id', (req, res) => {
+    console.log("get report by id.....");
     
     let id = req.params.id;
-    Course.findById(id, function(err,course){
-        res.json(course);
+    Report.findById(id, function(err,report){
+        res.json(report);
     });
 })
 
-courses.get('/coursesByStudentId/:id', (req, res) => {
+reports.get('/reportsByUserId/:id', (req, res) => {
     console.log("get courses by student id.....");
     
     let id = req.params.id;
-    Course.findById(id, function(err,course){
+    Report.findById(id, function(err, report){
         res.json(course);
-    });
+    }.sort({report_time: -1}));
 })
 
-courses.put('/:id', (req, res, next) => {
-    console.log("put req.course " + req.course);
+reports.put('/:id', (req, res, next) => {
+    console.log("put req.course " + req.report);
     //var courseIndex = req.body.course_code.indexOf(req.params.course_code);
-    const course = new Course({
+    const report = new Course({
         _id:req.params.id,
         course_code: req.body.course_code,
         course_name: req.body.course_name,
@@ -89,7 +95,7 @@ courses.put('/:id', (req, res, next) => {
         semester: req.body.semester
     });
     console.log('router.put by para id.' + req.params.id);
-    Course.updateOne({_id:req.params.id}, course).then(result => {
+    Report.updateOne({_id:req.params.id}, report).then(result => {
         if(result){
             res.status(200).json({message: "Upadate successfully!"});
         } else {
@@ -98,14 +104,14 @@ courses.put('/:id', (req, res, next) => {
     });
 })
 
-courses.delete("/:id", (req, res, next) => {
+reports.delete("/:id", (req, res, next) => {
     console.log("Delete ...: " + req.params.id);
     
-    Course.deleteOne({_id: req.params.id}).then(result => {
+    Report.deleteOne({_id: req.params.id}).then(result => {
         console.log(result);
-        res.status(200).json({message: "Course deleted!"});
+        res.status(200).json({message: "Report deleted!"});
     });
 })
 
 
-module.exports = courses
+module.exports = reports

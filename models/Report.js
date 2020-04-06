@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CourseSchema = new Schema({
-    email:{
+    nurse_email:{
         type:String,
         required:true
     },
