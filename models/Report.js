@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const CourseSchema = new Schema({
+const ReportSchema = new Schema({
     nurse_email:{
+        type:String,
+        required:true
+    },
+    reporter_email:{
         type:String,
         required:true
     },
@@ -21,7 +25,7 @@ const CourseSchema = new Schema({
     low_blood_pressure:{
         type:String
     },
-    weigt:{
+    weight:{
         type:String
     },
     report_time:{
@@ -36,4 +40,4 @@ const CourseSchema = new Schema({
     }
 })
 
-module.exports = Course = mongoose.model('courses', CourseSchema)
+module.exports = Report = mongoose.model('reports', ReportSchema)

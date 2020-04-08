@@ -27,6 +27,8 @@ class Navbar extends Component{
         localStorage.removeItem('usertoken');
         localStorage.removeItem('userName');
         localStorage.removeItem('email');
+        localStorage.removeItem('nurse');
+        localStorage.removeItem('role');
 
         this.props.history.push('/');
     }
@@ -117,7 +119,7 @@ class Navbar extends Component{
                         </li>
                     </ul>
                     {localStorage.usertoken && localStorage.role === '20' ? nurseLink : null}
-                    {localStorage.usertoken && localStorage.role === '10' ? patientLink : null}
+                    {localStorage.usertoken && localStorage.role === '10' && localStorage.nurse !== '' ? patientLink : null}
                     { localStorage.email === 'admin@yahoo.ca' ? adminLink : null}
                 </div>
                 <div className="d-flex flex-reverse bd-highlight mb-3 ustify-content-around" id="navbar2">

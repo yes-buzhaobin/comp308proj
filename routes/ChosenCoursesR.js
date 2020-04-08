@@ -5,7 +5,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const ChosenCourse = require('../models/ChosenCourse');
+const ChosenCourse = require('../models/Post');
 const Course = require('../models/Report');
 courses.use(cors());
 chosenCourses.use(cors());

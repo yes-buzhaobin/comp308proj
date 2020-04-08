@@ -34,6 +34,8 @@ export default class CreateReport extends Component {
         console.log(`weight:${this.state.weight}`);
 
         const newReport = {
+            nurse_email:localStorage.nurse,
+            reporter_email:localStorage.email,
             body_temperature: this.state.body_temperature,
             heart_rate:this.state.heart_rate,
             respiratory_rate:this.state.respiratory_rate,
@@ -41,6 +43,7 @@ export default class CreateReport extends Component {
             low_blood_pressure:this.state.low_blood_pressure,
             weight:this.state.weight
         };
+        console.log(newReport);
         this.setState = {
             body_temperature: '',
             heart_rate: '',
@@ -125,7 +128,7 @@ export default class CreateReport extends Component {
                             </div>
                             <div className="row">
                                 <div className="col">
-                                    <label htmlFor="respiratory_rate" className="labelRight">Section:</label>
+                                    <label htmlFor="respiratory_rate" className="labelRight">Respiratory Rate:</label>
                                 </div>
                                 <div className="col-8">
                                     <input type="text"

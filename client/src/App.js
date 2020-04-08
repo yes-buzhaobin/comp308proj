@@ -28,6 +28,7 @@ import MyPatients from './components/nurse/patients/MyPatients';//nurse componen
 import NoNursePatients from './components/nurse/patients/NoNursePatients';//nurse components
 
 import CreateReport from './components/reports/CreateReport';
+import MyReports from './components/reports/MyReports';
 
 
 class App extends Component {
@@ -59,6 +60,7 @@ class App extends Component {
 
 
             <Route exact path="/createReport/" component={CreateReport} />
+            <Route exact path="/myReports" component={MyReports} />
 
 
             
