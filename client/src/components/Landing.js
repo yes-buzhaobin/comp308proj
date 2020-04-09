@@ -1,42 +1,50 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 //import jwt_decode from 'jwt-decode';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Course = props => (
+const Post = props => (
     <tr>
-        <td>{props.course.course_code}</td>
-        <td>{props.course.course_name}</td>
-        <td>{props.course.section}</td>
-        <td>{props.course.semester}</td>
-        {localStorage.studenttoken && localStorage.email !== 'admin@yahoo.ca' ?  
-            (<td>
-                <Link to={"/showClass/"+props.course.course_code}>List Students</Link> 
-            </td>)
-        : null}
+        <td>{props.post.title}</td>
+        <td>{props.post.post_time}</td>
+        <td>{props.post.authorEmail}</td>
+        <td>
+             <Link to={"/readPost/"+props.post._id}>Read</Link> 
+        </td>
+        { localStorage.usertoken && localStorage.email === props.post.authorEmail ?
+            [ 
+                <td>
+                    <Link to={"/edttPost/"+props.post._id}>Edit</Link> 
+                </td>,
+                <td>
+                    <Link to={"/deletePost/"+props.post._id}>Delete</Link> 
+                </td>
+            ]
+        : null};
     </tr>
 )
 
-class DisplayCourses extends Component {
+class DisplayPosts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            courses: []
+            posts: []
         };
     }
 
     componentDidMount() {
-        //console.log("DisplayCourses");
-        axios.get('http://localhost:5000/courses/courses')
+        console.log("DisplayPosts");
+        axios.get('http://localhost:5000/posts/getPosts/')
             .then(res => {
-                this.setState({courses: res.data.courses});
+                console.log(res.data);
+                this.setState({posts: res.data});
             }).catch(function (error) {
                 console.log(error);
             })
     }
-    courseList() {
-        return this.state.courses.map(function(currentCourse, i) {
-            return <Course course={currentCourse} key={i} />;
+    postList() {
+        return this.state.posts.map(function(currentPost, i) {
+            return <Post post={currentPost} key={i} />;
         });
     }
 
@@ -45,19 +53,18 @@ class DisplayCourses extends Component {
             <div className="container">
                 <div className="jumbotron mt-5">
                     <div className="col-sm-8 mx-auto">
-                        <h1 className="text-center">COURSES</h1>
+                        <h1 className="text-center">Posts</h1>
                     </div>
                     <table className="table col-md-6 mx-auto">
                         <thead>
                             <tr>
-                                <th>Course Code</th>
-                                <th>Course Name</th>
-                                <th>Section</th>
-                                <th>Semester</th>
+                                <th>Title</th>
+                                <th>Post Time</th>
+                                <th>Author Email</th>
                             </tr>
                         </thead>
                         <tbody>
-                            { this.courseList() }
+                            { this.postList() }
                         </tbody>
                     </table>
                 </div>
@@ -66,4 +73,4 @@ class DisplayCourses extends Component {
     }
 }
 
-export default DisplayCourses
+export default DisplayPosts

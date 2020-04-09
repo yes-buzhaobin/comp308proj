@@ -28,9 +28,9 @@ mongoose
 
     app.use('/reports', Reports);
 
-    var ChosenCourses = require('./routes/ChosenCoursesR');
+    var Posts = require('./routes/PostR');
 
-    app.use('/chosenCourses', ChosenCourses);
+    app.use('/posts', Posts);
 
     app.listen(port, () => {
         console.log("Servr is running on port: " + port);
