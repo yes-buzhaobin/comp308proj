@@ -37,6 +37,9 @@ const ReportSchema = new Schema({
         type: Number,
         // Create a default 'status' value
         default: '1' // 1 for unread, 2 for read
+    },
+    reply:{
+        type:String
     }
 })
 

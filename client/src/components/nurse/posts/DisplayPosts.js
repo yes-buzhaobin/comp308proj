@@ -14,7 +14,7 @@ const Post = props => (
         { localStorage.usertoken && localStorage.email === props.post.authorEmail ?
             [ 
                 <td>
-                    <Link to={"/edttPost/"+props.post._id}>Edit</Link> 
+                    <Link to={"/editPost/"+props.post._id}>Edit</Link> 
                 </td>,
                 <td>
                     <Link to={"/deletePost/"+props.post._id}>Delete</Link> 

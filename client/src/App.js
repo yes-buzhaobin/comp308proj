@@ -21,6 +21,9 @@ import CreateReport from './components/reports/CreateReport';
 import MyReports from './components/reports/MyReports';
 
 import CreatePost from './components/nurse/posts/CreatePost';
+import EditPost from './components/nurse/posts/EditPost';
+import ReadPost from './components/nurse/posts/ReadPost';
+import DeletePost from './components/nurse/posts/DeletePost';
 
 
 class App extends Component {
@@ -48,6 +51,9 @@ class App extends Component {
             <Route exact path="/myReports" component={MyReports} />
 
             <Route exact path="/createPost" component={CreatePost} />
+            <Route exact path="/editPost/:id" component={EditPost} />
+            <Route exact path="/readPost/:id" component={ReadPost} />
+            <Route exact path="/deletePost/:id" component={DeletePost} />
 
           </div>
         </div>

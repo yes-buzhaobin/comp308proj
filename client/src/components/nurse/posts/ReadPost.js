@@ -30,28 +30,7 @@ export default class CreateReport extends Component {
     }
     onSubmit(e) {
         e.preventDefault();
-
-        console.log(`Form submitted:`);
-        console.log(`title:${this.state.title}`);
-        console.log(`content:${this.state.content}`);
-
-        const newPost = {
-            title:this.state.title,
-            content:this.state.content
-        };
-        console.log(newPost);
-        this.setState = {
-            title: '',
-            content: '',
-        };
-
-        axios.post('http://localhost:5000/posts/updatePost/'
-            + this.props.match.params.id, newPost)
-            .then(res => {
-                console.log(res.data);
-                this.props.history.push('/');
-            });
-
+        this.props.history.push('/');
     }
     onChangeTitle(e) {
         this.setState({
@@ -79,6 +58,7 @@ export default class CreateReport extends Component {
                                     <input type="text"
                                     className="form-control"
                                     name="title"
+                                    disabled="disabled"
                                     placeholder="Enter a title"
                                     value={this.state.title}
                                     onChange={this.onChangeTitle}/>
@@ -90,6 +70,7 @@ export default class CreateReport extends Component {
                                     <textarea
                                     rows="4" 
                                     cols="50"
+                                    disabled="disabled"
                                     className="form-control"
                                     name="content"
                                     placeholder="Enter content"
@@ -97,7 +78,7 @@ export default class CreateReport extends Component {
                                     onChange={this.onChangeContent}/>
                                 </div>
                             <button type="submit" className="btn btn-lg btn-primary btn-block">
-                                Update The Post
+                                Return
                             </button>
                         </form>
                     </div>

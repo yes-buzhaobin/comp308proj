@@ -8,19 +8,22 @@ const Post = props => (
         <td>{props.post.title}</td>
         <td>{props.post.post_time}</td>
         <td>{props.post.authorEmail}</td>
-        <td>
-             <Link to={"/readPost/"+props.post._id}>Read</Link> 
-        </td>
-        { localStorage.usertoken && localStorage.email === props.post.authorEmail ?
+        { localStorage.usertoken && localStorage.email !== props.post.authorEmail ?
             [ 
                 <td>
-                    <Link to={"/edttPost/"+props.post._id}>Edit</Link> 
+                    <Link to={"/readPost/"+props.post._id}>Read</Link> 
+                </td>
+            ]
+        : 
+            [ 
+                <td>
+                    <Link to={"/editPost/"+props.post._id}>Edit</Link> 
                 </td>,
                 <td>
                     <Link to={"/deletePost/"+props.post._id}>Delete</Link> 
                 </td>
             ]
-        : null};
+        };
     </tr>
 )
 

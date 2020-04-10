@@ -56,7 +56,7 @@ export default class CreateReport extends Component {
         axios.post('http://localhost:5000/reports/createReport', newReport)
             .then(res => {
                 console.log(res.data);
-                this.props.history.push('/displayCourses');
+                this.props.history.push('/');
             });
 
     }

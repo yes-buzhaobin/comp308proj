@@ -26,16 +26,17 @@ posts.post('/createPost', (req, res) => {
     .catch(err => {
         res.send('Adding post error: ' + err);
     })
-})
+});
 
-posts.post('/updateChosenCourse/:id', (req, res) => {
+posts.post('/updatePost/:id', (req, res) => {
     console.log("try to update a course....");
     console.log(req.body);
     Post.findById(req.params.id, function(err, post) {
         if(!post){
             res.status(404).send('Data is not found');
         } else {
-            post.title=req.body.content;
+            post.title=req.body.title;
+            post.content=req.body.content;
             post.save().then(post => {
                 res.json('A post updated.');
             })
@@ -45,7 +46,7 @@ posts.post('/updateChosenCourse/:id', (req, res) => {
         }
 
     });
-})
+});
 
 posts.get('/getPosts', (req, res) => {
     //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
@@ -62,19 +63,19 @@ posts.get('/getPosts', (req, res) => {
     .catch(err => {
         res.send('error: ' + err);
     })
-})
+});
 
-posts.get('/getStudents/:course_code', (req, res) => {
-    console.log("get student by course code.....");
+posts.get('/getPostById/:id', (req, res) => {
+    console.log("get post by id.....");
     
-    ChosenCourse.find({
-        course_code: req.params.course_code
-    }).then( courses => {
+    Post.findOne({
+        _id: req.params.id
+    }).then( post => {
         res.status(200).json({
-            courses:courses}
+            post:post}
             );
     });
-})
+});
 
 
 
