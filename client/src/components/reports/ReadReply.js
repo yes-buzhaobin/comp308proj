@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import "./ListReportsToMe.css";
+import "./MyReports.css";
 
-export default class EditReport extends Component {
+export default class ReadReply extends Component {
     constructor(props){
         super(props);
         this.onChangeReportTime = this.onChangeReportTime.bind(this);
@@ -83,7 +83,7 @@ export default class EditReport extends Component {
         axios.post('http://localhost:5000/reports/updateReport/' + this.props.match.params.id, newReply)
             .then(res => {
                 console.log(res.data);
-                this.props.history.push('/ListReportsToMe');
+                this.props.history.push('/myReports');
             });
 
     }
@@ -285,13 +285,14 @@ export default class EditReport extends Component {
                                     cols="50"
                                     className="form-control"
                                     name="reply"
+                                    disabled="disabled"
                                     placeholder="Enter Reply"
                                     value={this.state.reply}
                                     onChange={this.onChangeReply}/>
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-lg btn-primary btn-block">
-                                Update Reply
+                                Return
                             </button>
                         </form>
                     </div>

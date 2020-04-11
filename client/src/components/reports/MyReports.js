@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 //import jwt_decode from 'jwt-decode';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import "./MyReport.css";
+import "./MyReports.css";
 
 const Report = props => (
     <tr>
@@ -14,6 +14,14 @@ const Report = props => (
         <td>{props.report.high_blood_pressure}</td>
         <td>{props.report.low_blood_pressure}</td>
         <td>{props.report.weight}</td>
+        {props.report.reply_time !== null ?
+            [ 
+                <td>
+                    <Link to={"/readReply/"+props.report._id}>Read&nbsp;Reply</Link> 
+                </td>
+            ]
+        : null}
+        
     </tr>
 )
 

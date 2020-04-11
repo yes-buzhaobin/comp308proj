@@ -66,7 +66,7 @@ reports.get('/patientReports/:email', (req, res) => {
     console.log("patient getting own reports");
     Report.find({
         reporter_email:req.params.email
-    })
+    }).sort({report_time: -1})
         .then( documents => {
             console.log(documents);
             res.status(200).json({

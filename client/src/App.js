@@ -19,6 +19,7 @@ import NoNursePatients from './components/nurse/patients/NoNursePatients';//nurs
 
 import CreateReport from './components/reports/CreateReport';
 import MyReports from './components/reports/MyReports';
+import ReadReply from './components/reports/ReadReply';
 
 import CreatePost from './components/nurse/posts/CreatePost';
 import EditPost from './components/nurse/posts/EditPost';
@@ -52,6 +53,7 @@ class App extends Component {
 
             <Route exact path="/createReport/" component={CreateReport} />
             <Route exact path="/myReports" component={MyReports} />
+            <Route exact path="/readReply/:id" component= {ReadReply} />
 
             <Route exact path="/createPost" component={CreatePost} />
             <Route exact path="/editPost/:id" component={EditPost} />

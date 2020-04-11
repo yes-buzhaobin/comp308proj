@@ -34,9 +34,9 @@ class ListReportsToMe extends Component {
         axios.get('http://localhost:5000/reports/reportsByNurse/' + localStorage.email)
             .then(res => {
                 this.setState({reports: res.data.reports});
-                console.log(this.state.reports);
+                //console.log(this.state.reports);
             }).catch(function (error) {
-                console.log(error);
+                //console.log(error);
             })
     }
     reportList() {
