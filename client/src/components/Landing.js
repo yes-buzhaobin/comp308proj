@@ -6,7 +6,7 @@ import axios from 'axios';
 const Post = props => (
     <tr>
         <td>{props.post.title}</td>
-        <td>{props.post.post_time}</td>
+        <td>{props.post.post_time.substring(0,19)}</td>
         <td>{props.post.authorEmail}</td>
         { localStorage.usertoken && localStorage.email !== props.post.authorEmail ?
             [ 

@@ -25,6 +25,9 @@ import EditPost from './components/nurse/posts/EditPost';
 import ReadPost from './components/nurse/posts/ReadPost';
 import DeletePost from './components/nurse/posts/DeletePost';
 
+import ListReportsToMe from './components/nurse/Replys/ListReportsToMe';
+import EditReply from './components/nurse/Replys/EditReply';
+
 
 class App extends Component {
   render(){
@@ -54,6 +57,9 @@ class App extends Component {
             <Route exact path="/editPost/:id" component={EditPost} />
             <Route exact path="/readPost/:id" component={ReadPost} />
             <Route exact path="/deletePost/:id" component={DeletePost} />
+
+            <Route exact path="/listReportsToMe/" component={ListReportsToMe} />
+            <Route exact path="/editReply/:id" component={EditReply} />
 
           </div>
         </div>

@@ -82,12 +82,17 @@ class Navbar extends Component{
                 </li>
                 <li className="nav-item">
                     <Link to="/noNursePatients" className="my-nav-link">
-                        NoNursePatient
+                        NoNursePatients
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/myPatients" className="my-nav-link">
                         MyPatients
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/listReportsToMe" className="my-nav-link">
+                        ReplyReports
                     </Link>
                 </li>
             </ul>

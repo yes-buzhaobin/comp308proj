@@ -38,6 +38,9 @@ const ReportSchema = new Schema({
         // Create a default 'status' value
         default: '1' // 1 for unread, 2 for read
     },
+    reply_time:{
+        type: Date,
+    },
     reply:{
         type:String
     }

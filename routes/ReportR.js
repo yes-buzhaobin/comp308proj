@@ -22,6 +22,8 @@ reports.post('/createReport', (req, res) => {
         low_blood_pressure:req.body.low_blood_pressure,
         weight:req.body.weight,
         report_time:req.body.report_time,
+        reply:'',
+        reply_time:'',
         status:req.body.status
     };
 
@@ -33,7 +35,31 @@ reports.post('/createReport', (req, res) => {
     .catch(err => {
         res.send('Adding report error: ' + err);
     })
-})
+});
+
+reports.post('/updateReport/:id', (req, res) => {
+    console.log("req.body= "+ req.body);
+    console.log(req.body.reply);
+    Report.findById(req.params.id, function(err, report) {
+        if(!report){
+            res.status(404).send('Data is not found');
+        } else {
+            report.reply = req.body.reply;
+            report.reply_time = Date();
+            //console.log(report);
+
+            report.save().then(report => {
+                //console.log("saved.");
+                res.json('A reply of a report updated.');
+            })
+            .catch(err => {
+                //console.log("save fails.");
+                res.status(400).send("Update not possible.");
+            })
+        }
+
+    });
+});
 
 reports.get('/patientReports/:email', (req, res) => {
     //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
@@ -57,13 +83,19 @@ reports.get('/:id', (req, res) => {
     });
 })
 
-reports.get('/reportsByUserId/:id', (req, res) => {
-    console.log("get courses by student id.....");
+reports.get('/reportsByNurse/:nurseEmail', (req, res) => {
+    console.log("get reports by nurse email.....");
     
     let id = req.params.id;
-    Report.findById(id, function(err, report){
-        res.json(course);
-    }.sort({report_time: -1}));
+    Report.find({
+        nurse_email:req.params.nurseEmail
+    }).sort({report_time: -1})
+        .then( documents => {
+            //console.log(documents);
+            res.status(200).json({
+                reports: documents
+            })
+        });
 })
 
 reports.delete("/:id", (req, res, next) => {

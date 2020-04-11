@@ -52,7 +52,7 @@ export default class EditUser extends Component {
         )
             .then(res => {
                 console.log(res.data);
-                this.props.history.push('/displayUser');
+                this.props.history.push('/displayUsers');
             });
             
     }
