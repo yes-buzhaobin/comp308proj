@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
-//import Menu from './components/menu';
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';
 import Login from './components/Login';
@@ -28,6 +27,10 @@ import DeletePost from './components/nurse/posts/DeletePost';
 
 import ListReportsToMe from './components/nurse/Replys/ListReportsToMe';
 import EditReply from './components/nurse/Replys/EditReply';
+
+import Iris from './components/AI/Iris/Iris';
+import Predict from './components/AI/Iris/predict';
+
 
 
 class App extends Component {
@@ -62,6 +65,9 @@ class App extends Component {
 
             <Route exact path="/listReportsToMe/" component={ListReportsToMe} />
             <Route exact path="/editReply/:id" component={EditReply} />
+
+            <Route exact path="/iris/" component={Iris} />
+            <Route exact path="/predict/" component={Predict} />
 
           </div>
         </div>

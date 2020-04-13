@@ -86,7 +86,7 @@ posts.delete("/:id", (req, res, next) => {
         console.log(result);
         res.status(200).json({message: "Course deleted!"});
     });
-})
+});
 
 
 module.exports = posts
