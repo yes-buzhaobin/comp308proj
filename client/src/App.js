@@ -31,6 +31,13 @@ import EditReply from './components/nurse/Replys/EditReply';
 import Iris from './components/AI/Iris/Iris';
 import Predict from './components/AI/Iris/predict';
 
+import Template from './components/AI/Diagrams/Template';
+import BodyTemperature from './components/AI/Diagrams/BodyTemperature';
+import BloodPressure from './components/AI/Diagrams/BloodPressure';
+import HeartRate from './components/AI/Diagrams/HeartRate';
+import Respiratory from './components/AI/Diagrams/Respiratory';
+import Weight from './components/AI/Diagrams/Weight';
+
 
 
 class App extends Component {
@@ -68,6 +75,13 @@ class App extends Component {
 
             <Route exact path="/iris/" component={Iris} />
             <Route exact path="/predict/" component={Predict} />
+
+            <Route exact path="/template/" component={Template} />
+            <Route exact path="/bodyTemperature/" component={BodyTemperature} />
+            <Route exact path="/bloodPressure/" component={BloodPressure} />
+            <Route exact path="/heartRate/" component={HeartRate} />
+            <Route exact path="/respiratory/" component={Respiratory} />
+            <Route exact path="/weight/" component={Weight} />
 
           </div>
         </div>

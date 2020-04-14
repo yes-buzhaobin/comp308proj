@@ -110,14 +110,15 @@ class Navbar extends Component{
                         MyReports
                     </Link>
                 </li>
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="/displayCourses" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        AI
-                    </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a className="dropdown-item" href="/createCourse">Diagram</a>
-                        <a className="dropdown-item" href="/iris">Iris</a>
-                    </div>
+                <li className="nav-item">
+                    <Link to="/template" className="my-nav-link">
+                        Diagrams
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/iris" className="my-nav-link">
+                    Iris
+                    </Link>
                 </li>
             </ul>
         );
