@@ -117,7 +117,7 @@ class Navbar extends Component{
                 </li>
                 <li className="nav-item">
                     <Link to="/iris" className="my-nav-link">
-                    Iris
+                    AIGame Iris
                     </Link>
                 </li>
             </ul>
@@ -134,7 +134,7 @@ class Navbar extends Component{
                         </li>
                     </ul>
                     {localStorage.usertoken && localStorage.role === '20' ? nurseLink : null}
-                    {localStorage.usertoken && localStorage.role === '10' && localStorage.nurse !== '' ? patientLink : null}
+                    {localStorage.usertoken && localStorage.role === '10' ? patientLink : null}
                     { localStorage.email === 'admin@yahoo.ca' ? adminLink : null}
                 </div>
                 <div className="d-flex flex-reverse bd-highlight mb-3 ustify-content-around" id="navbar2">
